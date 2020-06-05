@@ -26,6 +26,29 @@ get an email with a link to login and reset your password. Then, you should be
 able to access the [https://www.c0d3.com/curriculum].
 
 
+# Create git Repository
+
+The first step is to create a git repository which will hold this project. Just
+click on the "+" sign in the github.com web page, and select "New repository".
+
+* name: C0D3
+* LICENSE: GPLv3
+* create a README.md file
+* no .gitignore file yet
+
+
+# Clone the Repository
+
+Using 'git clone' to clone the C0D3 project to your local computer. Once it is
+cloned, go to its directory and use 'touch .gitignore' to create the .gitignore
+file. Then, use 'git add -m "add file" .gitignore' and 'git commit -m "add file"
+.gitignore' to add the new file to the repository.
+
+Using 'git push' to push the updated local repository to github.com.
+
+Now we have the working local repository and remote repository.
+
+
 # How to contribute:
 
 * Contributing to the website -
