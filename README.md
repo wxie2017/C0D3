@@ -1,5 +1,4 @@
 # My Learning process in C0D3
-=========
 
 This is my first github trial project. I wish I could use gitlab instead of github.
 However, the login is broken for me in gitlab.
@@ -11,7 +10,6 @@ The goal is to see if I become a well-trained software Engineer after this journ
 
 
 # Registration
-=========
 
 The [[https://www.c0d3.com/signup][signup]] page is easy. You fill in
 
