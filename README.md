@@ -4,7 +4,7 @@ This is my first github trial project. I wish I could use gitlab instead of gith
 However, the login is broken for me in gitlab.
 
 Anyway, I will use the project to record every step that I have done during my
-learning in [https://www.c0d3.com/ C0D3].
+learning in [https://www.c0d3.com/].
 
 The goal is to see if I become a well-trained software Engineer after this journey.
 
