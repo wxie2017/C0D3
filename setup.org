@@ -1,0 +1,67 @@
+# Setup Basics
+
+* install nvm - node version manager
+The
+[[https://www.notion.so/Setup-Instructions-fc8f8fcc1376482ead839fa6b1034cb4#10ab6286f4d942c58bd330f68cb8cb95][setup
+session]] is very simple. However, I still have problem with
+[[https://github.com/nvm-sh/nvm][install nvm]] :
+
+** curl
+#+BEGIN_SRC shell
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+#+END_SRC
+
+#+RESULTS:
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to raw.githubusercontent.com port 443: Connection refused
+
+@hwong0305 suggested that I should try
+#+BEGIN_SRC shell
+curl -o- http://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+#+END_SRC
+
+I did not try because I started 'git installation'.
+
+** wget
+ #+BEGIN_SRC shell
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+ #+END_SRC
+
+ #+RESULTS:
+ (no result)
+
+** git
+ #+BEGIN_SRC shell
+cd
+git clone https://github.com/nvm-sh/nvm.git .nvm
+cd ~/.nvm
+git checkout v0.35.3
+. nvm.sh
+command -v nvm # should output nvm
+ #+END_SRC
+
+ It works.
+
+* install node
+#+BEGIN_SRC shell
+nvm install node # the lastest version
+nvm use node
+#+END_SRC
+
+* run test.js
+#+BEGIN_SRC js
+a = "hello"
+console.log(a)
+#+END_SRC
+
+run it in shell:
+#+BEGIN_SRC shell
+node test.js
+#+END_SRC
+
+#+RESULTS:
+: hello
+
+This is everything for setting up node.js.
