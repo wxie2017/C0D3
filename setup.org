@@ -49,7 +49,6 @@ command -v nvm # should output nvm
 nvm install node # the lastest version
 nvm use node
 #+END_SRC
-
 * run test.js
 #+BEGIN_SRC js
 a = "hello"
@@ -65,3 +64,14 @@ node test.js
 : hello
 
 This is everything for setting up node.js.
+* install c0d3
+From the page, you may see the message:
+"Please update your CLI client by opening your terminal and running the command:
+npm i -g c0d3"
+It means you need install c0d3, just do
+#+BEGIN_SRC shell
+nvm use node
+npm -v
+npm i -g cod3
+#+END_SRC
+The CLI for c0d3 will be added.
