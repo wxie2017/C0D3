@@ -1,0 +1,47 @@
+# JS 0 - Foundations
+
+* Strings
+A string can be words, sentences, or a bunch of characters. To make a string,
+you can use double quotes `"` , single quotes `'`, or ``` (the key to the left
+of 1 on most keyboards).
+* Template Literals (Template Strings)
+Using ``` (backticks) and `${expression}` (placeholder) allows us to put the
+variables directly into the string.
+
+** Exercise: Rewrite the `story` variable to use ```
+original code:
+#+BEGIN_SRC js
+const actor = "We"
+const location = "farmers' market"
+
+const story = actor + " plan to go to a " + location + " tomorrow"
+#+END_SRC
+
+rewritten code:
+#+BEGIN_SRC js
+const actor = "We"
+const location = "farmers' market"
+
+const story = `${actor} plan to go to a ${location} tomorrow`
+
+console.log(story)
+#+END_SRC
+
+#+RESULTS:
+: We plan to go to a farmers' market tomorrow
+: undefined
+* Truthy / Falsey
+**Falsey:** There are only **six falsey values** in JavaScript:
+
+`false`, `0`, `""` (empty string), `undefined`, `null`, `NaN` (Not a Number)
+
+**Truthy: EVERYTHING ELSE** is truthy!
+|-----------+--------+-----------------|
+| data type | Falsey | Truthy          |
+|-----------+--------+-----------------|
+| Number    | 0, NaN | Everything else |
+|-----------+--------+-----------------|
+| String    | ""     | Everything else |
+|-----------+--------+-----------------|
+| Boolean   | false  | true            |
+|-----------+--------+-----------------|
