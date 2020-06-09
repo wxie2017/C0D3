@@ -87,11 +87,11 @@ const name = (parameter1, parameter2, parameter3) => {
 const result = name(1, 2, 3)
 #+END_SRC
 ** Exercise
-Please define a function that returns a function:
+*** Please define a function that returns a function:
 #+BEGIN_SRC js
 const fn = () => {
     return () => {
-    return 0
+        return 0
     }
 }
 
@@ -102,5 +102,34 @@ console.log(b)
 #+END_SRC
 
 #+RESULTS:
-: 0
-: undefined
+*** Write an arrow function named solution that runs a function called console.log three times and return a number.
+#+BEGIN_SRC js
+const solution = () => {
+    console.log(1)
+    console.log(2)
+    console.log(3)
+    return 4
+}
+
+//call
+const a = solution()
+console.log(a)
+#+END_SRC
+
+#+RESULTS:
+*** Write an arrow function named solution that returns a function. When the returned function is called, console.log will run three times.
+#+BEGIN_SRC js
+const solution = () => {
+    return () => {
+        console.log(1)
+        console.log(2)
+        console.log(3)
+        }
+}
+
+//call
+const c = solution()
+const d = c()
+#+END_SRC
+
+#+RESULTS:
