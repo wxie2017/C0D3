@@ -102,6 +102,7 @@ console.log(b)
 #+END_SRC
 
 #+RESULTS:
+
 *** Write an arrow function named solution that runs a function called console.log three times and return a number.
 #+BEGIN_SRC js
 const solution = () => {
@@ -117,6 +118,7 @@ console.log(a)
 #+END_SRC
 
 #+RESULTS:
+
 *** Write an arrow function named solution that returns a function. When the returned function is called, console.log will run three times.
 #+BEGIN_SRC js
 const solution = () => {
