@@ -48,3 +48,59 @@ console.log(story)
 |-----------+--------+-----------------|
 | Boolean   | false  | true            |
 |-----------+--------+-----------------|
+
+* Function
+** Function Syntax
+*** definition 1
+#+BEGIN_SRC js
+// syntax for defining a function
+function name (parameter1, parameter2, parameter3){
+// code to be executed
+}
+
+// call
+const abc = name(2, 5, 9)
+#+END_SRC
+*** definition 2
+#+BEGIN_SRC js
+const fn = function (a, b) {
+	return a + b
+}
+
+// call
+const ab = fn(a, b)
+#+END_SRC
+*** definition 3
+#+BEGIN_SRC js
+const myFunction = new Function("a", "b", "return a + b")
+
+// call
+const x = myFunction(4, 3)
+#+END_SRC
+*** definition 4
+#+BEGIN_SRC js
+const name = (parameter1, parameter2, parameter3) => {
+  // statements
+}
+
+// call
+const result = name(1, 2, 3)
+#+END_SRC
+** Exercise
+Please define a function that returns a function:
+#+BEGIN_SRC js
+const fn = () => {
+    return () => {
+    return 0
+    }
+}
+
+// call
+const a = fn()
+const b = a()
+console.log(b)
+#+END_SRC
+
+#+RESULTS:
+: 0
+: undefined
