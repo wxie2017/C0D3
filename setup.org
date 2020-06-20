@@ -45,10 +45,18 @@ command -v nvm # should output nvm
  It works.
 
 * install node
+** using nvm
 #+BEGIN_SRC shell
 nvm install node # the lastest version
 nvm use node
 #+END_SRC
+
+** guix
+   #+begin_src shell
+   guix package install node
+   node --version
+   #+end_src
+
 * run test.js
 #+BEGIN_SRC js
 a = "hello"
@@ -72,6 +80,6 @@ It means you need install c0d3, just do
 #+BEGIN_SRC shell
 nvm use node
 npm -v
-npm i -g cod3
+npm i -g c0d3 # failed in guix - issue 2
 #+END_SRC
 The CLI for c0d3 will be added.
