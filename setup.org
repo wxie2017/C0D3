@@ -83,3 +83,18 @@ npm -v
 npm i -g c0d3 # failed in guix - issue 2
 #+END_SRC
 The CLI for c0d3 will be added.
+* setup curriculum
+  #+begin_src shell
+  git clone https://github.com/garageScript/curriculum
+  cd curriculum
+  npm install
+  git checkout master
+  git checkout -b p1 # create new branch for problem 1
+  # edit solution for problem 1: js0/1.js
+  npm run test
+  git add js0/1.js
+  git commit -m "solve problem 1"
+  c0d3 submit
+  git checkout master
+  git merge p1
+  #+end_src

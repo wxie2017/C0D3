@@ -135,3 +135,48 @@ const d = c()
 #+END_SRC
 
 #+RESULTS:
+: 1
+: 2
+: 3
+: undefined
+
+*** Write an arrow function named massiveOrSmall that adds 2 numbers and returns "massive" if the sum is over 100 otherwise returns "small".
+    #+begin_src js
+    const massiveOrSmall = (n1, n2) => {
+        let sum = n1 + n2
+        if (sum > 100) {
+            return "massive"
+        } else {
+            return "small"
+        }
+        }
+
+    console.log(massiveOrSmall(60, 40))
+    console.log(massiveOrSmall(70, 50))
+    #+end_src
+
+    #+RESULTS:
+    : small
+    : massive
+    : undefined
+
+*** Write a function named compareStrings that returns true if two strings are equal and false if they're not.
+    #+begin_src js
+    const compareStrings = (s1, s2) => {
+        return (s1 === s2)
+        }
+
+    console.log(compareStrings("a", "a"))
+    console.log(compareStrings("a", "b"))
+    #+end_src
+
+    #+RESULTS:
+    : true
+    : false
+    : undefined
+** Lesson Challenges
+   #+begin_src
+   git clone https://github.com/garageScript/curriculum
+   #+end_src
+
+My solutions can be found at js0/.
