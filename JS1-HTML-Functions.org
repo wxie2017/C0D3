@@ -33,3 +33,26 @@ An HTML element is everything from the opening tag to the closing tag:
 ** Attributes
 Attributes provide more information about the tag to the browser.
 <tagName attribute1="attribute1 value" attribute2="attribute2 value" ...> content </tagName>
+** Browser JavaScript
+There are 2 ways to run JavaScript.
+1. Run the JavaScript in the browser using (`script` tag), or
+2. Run the JavaScript directly on your computer using `node`.
+
+So far the web pages we've written have been **static**—the browser renders
+(displays) the page once, then doesn’t interact with us after that. The sites
+you’re used to probably have more interesting behavior. This is often done with
+JavaScript. JavaScript is used to manipulate the HTML elements on a page *after*
+the page has been rendered, depending on lots of factors such as what the user
+does, how much time has gone by, or even information the page receives from
+other websites. This is called **dynamic** behavior.
+** Element Properties
+*** *onclick*
+Whenever you click on an element, the browser will try to run the element's
+`onclick` event function. Therefore, by assigning a function to an element's
+onclick event property, we can do something whenever the element is clicked.
+*** *value*
+Input elements have a `value` property that you can use to get the value of
+whatever the user typed in.
+
+To change a string into a number, you can add an unary operator `+` in front of
+the string.
