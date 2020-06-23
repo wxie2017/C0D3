@@ -1,0 +1,35 @@
+# JS 1 - HTML & Functions
+
+* Preflight
+** exercise 6
+  #+begin_src js
+const baratheon = (run_me) => {
+  return run_me() + 5
+}
+const tyrell = () => {
+  return 10
+}
+
+let res = tyrell          // what is res? answer: function tyrell
+
+res = baratheon( tyrell ) // what is res? answer: 10 + 5 = 15
+
+res = baratheon( () => {
+  return 92
+}, 3)                    // what is res? answer: only first parameter used, 92 + 5 = 97
+
+res = baratheon( () => {
+  const b = 95
+  tyrell()
+})                       // what is res? answer: undefined + 5 = NaN
+  #+end_src
+* HTML
+** HTML tag
+**h1** is a header tag and is usually the title of the HTML page. It has the
+largest text on the page. There are 6 header tags: h1 to h6.
+
+An HTML element is everything from the opening tag to the closing tag:
+<tagname> Content </tagname>
+** Attributes
+Attributes provide more information about the tag to the browser.
+<tagName attribute1="attribute1 value" attribute2="attribute2 value" ...> content </tagName>
