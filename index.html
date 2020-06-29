@@ -1,0 +1,19 @@
+<h1>Welcome!</h1>
+<h2>JS1</h2>
+<h5>Challenge 1</h5>
+<input class="input1" type="text" />
+<input class="input2" type="text" />
+<button class="submit1">Submit</button>
+<hr/>
+<script>
+const inputButton = document.querySelector('.submit1')
+const firstInput = document.querySelector('.input1')
+const secondInput = document.querySelector('.input2')
+
+inputButton.onclick = () => { // this function runs when user clicks on the button
+  const firstInputValue = +firstInput.value //+ means it is a number
+  const secondInputValue = secondInput.value
+alert(firstInputValue + 10)
+alert(secondInputValue)
+}
+</script>
