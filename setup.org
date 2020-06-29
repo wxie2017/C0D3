@@ -94,6 +94,7 @@ The CLI for c0d3 will be added.
   npm run test
   git add js0/1.js
   git commit -m "solve problem 1"
+  c0d3 login
   c0d3 submit
   git checkout master
   git merge p1
