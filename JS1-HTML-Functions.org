@@ -38,13 +38,24 @@ There are 2 ways to run JavaScript.
 1. Run the JavaScript in the browser using (`script` tag), or
 2. Run the JavaScript directly on your computer using `node`.
 
-So far the web pages we've written have been **static**—the browser renders
+So far the web pages we've written have been **static** —the browser renders
 (displays) the page once, then doesn’t interact with us after that. The sites
 you’re used to probably have more interesting behavior. This is often done with
 JavaScript. JavaScript is used to manipulate the HTML elements on a page *after*
 the page has been rendered, depending on lots of factors such as what the user
 does, how much time has gone by, or even information the page receives from
 other websites. This is called **dynamic** behavior.
+** Getting HTML elements
+`document.querySelector` is a common JavaScript method (or function)
+supported by most browsers. It takes a string argument and returns the first
+element that matches the string.
+
+When we run the `document.querySelector` method, we pass in `.` followed by the
+element's `class` name as a string argument. This argument tells the function to
+look up elements by their class attribute (aka **class name**). Note that the `.`
+in front of the class name tells the function to look for elements by class name
+rather than by element like we did before.
+
 ** Element Properties
 *** *onclick*
 Whenever you click on an element, the browser will try to run the element's
@@ -56,3 +67,8 @@ whatever the user typed in.
 
 To change a string into a number, you can add an unary operator `+` in front of
 the string.
+
+** Exercise
+#+BEGIN_SRC js
+let generate // This is create a variable
+#+END_SRC

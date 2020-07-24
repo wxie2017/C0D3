@@ -98,4 +98,7 @@ The CLI for c0d3 will be added.
   c0d3 submit
   git checkout master
   git merge p1
+  ...
+  git checkout p1
+  git merge master
   #+end_src
