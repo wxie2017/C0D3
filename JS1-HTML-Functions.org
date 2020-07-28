@@ -72,3 +72,8 @@ the string.
 #+BEGIN_SRC js
 let generate // This is create a variable
 #+END_SRC
+* Closure
+An inner function always has access to the variables and parameters of its
+outer function, even after the outer function has returned.
+* Async
+**callbacks** are functions that are passed into another function as arguments.
