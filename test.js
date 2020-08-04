@@ -205,9 +205,43 @@ const oneAndTwo = () => {
     setTimeout(() => {
         console.log("one")
         setTimeout(() => {
-            console.log("two"), 2000})}, 1000)
+            console.log("two")
+        }, 2000)
+    }, 1000)
+}
+
+const oneCharacterS = (s, i=0) => {
+    if (s.length > i) {
+        setTimeout (() => {
+            console.log(s[i])
+            oneCharacterS(s, i+1)},
+                    1000)
+    } else {
+        return
+    }
+}
+
+const nextN = (n) => {
+    return () => {
+        n = n + 1
+        return (n)
+    }
+}
+
+const returnX = (n, f) => {
+    return () => {
+        if (n > 0) {
+            n = n - 1
+            return f()
+        } else {
+            return null
+        }
+    }
 }
 
 
 //call
-oneAndTwo()
+let c = returnX(2, () => {return "hello"})
+console.log(c())
+console.log(c())
+console.log(c())

@@ -102,3 +102,23 @@ The CLI for c0d3 will be added.
   git checkout p1
   git merge master
   #+end_src
+* setup jest
+Jest is the test framework to run our tests.
+** install jest
+#+BEGIN_SRC shell
+npm i jest
+cd your_project_folder
+npm init -y # initialize your project
+#+END_SRC
+** create solution file
+Create a file for your solutions in your project folder. Let's call it
+preflight.js.
+** create a test file
+Create a file for the tests in your project folder. Call it preflight.test.js. The word test in the
+filename is important; Jest will only run files with test in the filename.
+** link solution file and test file
+First tell your test file to include the file that will have your solutions:
+#+BEGIN_SRC js
+// fn will be an object with all your preflight solutions
+const fn = require('./preflight.js')
+#+END_SRC
