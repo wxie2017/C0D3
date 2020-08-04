@@ -1,0 +1,24 @@
+# JS 1 - Arrays
+
+* Preflight
+** jest
+Jest is test framework to run out tests.
+* HTML
+** Div
+<div> tag defines a container or section that is used to group other elements
+together inside it. All HTML elements inside the section are called child
+elements of the <div>. Elements inside <div> are sibling elements of each other.
+A typical web page has a hierarchy of several divs deep.
+** innerHTML property
+By setting an element's innerHTML property, you can dynamically add any other
+elements to the page.
+If you want to get a reference of an element that is inserted by JavaScript, pay
+attention and make sure you write the document.querySelector to search the
+element **after** adding the element tag!
+Keep in mind that when you set the `innerHTML` property, whatever was there
+previously is gone. In other words, after setting the `innerHTML` of an element,
+all variables for the children elements are no longer usable.
+** innerText property
+If you do not wish to create new HTML elements and simply wish to change the
+text inside an element, you should use the innerText property. The innerText
+property will treat your strings as literal strings instead of html tags.

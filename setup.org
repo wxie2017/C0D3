@@ -107,6 +107,7 @@ Jest is the test framework to run our tests.
 ** install jest
 #+BEGIN_SRC shell
 npm i jest
+npm i -g jest # install globally
 cd your_project_folder
 npm init -y # initialize your project
 #+END_SRC
@@ -122,3 +123,65 @@ First tell your test file to include the file that will have your solutions:
 // fn will be an object with all your preflight solutions
 const fn = require('./preflight.js')
 #+END_SRC
+** example using jest
+These examples will be your tests and the following instructions will show you
+how to create tests and run them.
+*** step 1
+In the preflight.js file, set up the object that will be exported to the test
+file and write your solution. For now, you just need to know that allFuns is an
+object.
+#+BEGIN_SRC js
+const allFuns = {}
+
+const removeCharX = ( ... ) => {
+  // Your code goes here
+}
+
+allFuns.removeCharX = removeCharX // You need this line for every function
+                                  // you write
+#+END_SRC
+*** step 2
+Add this line to preflight.js. As you solve more exercises, just keep this line
+at the end.
+#+BEGIN_SRC js
+module.exports = allFuns
+#+END_SRC
+*** step 3
+Open the Tests toggle and paste the code into your preflight.test.js file.
+#+BEGIN_SRC js
+describe('removeCharX function', () => {
+    it('should remove the first character', () => {
+        const str = "We're in the endgame now."
+        const result = fn.removeCharX(str, 0)
+        expect(result).toEqual("e're in the endgame now.")
+    })
+    it('return the original string', () => {
+        const str = "a"
+        const result = fn.removeCharX(str, 3)
+        expect(result).toEqual("a")
+    })
+    it('return the original string', () => {
+        const str = "abc"
+        const result = fn.removeCharX(str, -3)
+        expect(result).toEqual("abc")
+    })
+})
+#+END_SRC
+*** step 4
+Run the test with
+#+BEGIN_SRC shell
+jest preflight.test.js
+node_modules/jest/bin/jest.js preflight.test.js # run from the library
+#+END_SRC
+*** step 5
+To have your tests automatically re-run as you edit the code or add new tests,
+run jest with the --watch option in one terminal and leave it running. As you
+change your code in your editor your tests will run automatically. Press q to
+exit when you're done.
+#+BEGIN_SRC shell
+jest --watch preflight.test.js
+#+END_SRC
+*** summary
+For each new exercise, click the Tests toggle and add the tests to your
+preflight.test.js file. Then add your solution to the preflight.js file and
+re-run the tests (or leave them running with --watch).

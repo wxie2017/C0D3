@@ -1,0 +1,53 @@
+<div>
+	<input type="text" class="username" />
+	<input type="password" class="password" />
+	<button>Sign in</button>
+</div>
+
+<div class="container">
+</div>
+<script>
+const box = document.querySelector('.container')
+box.innerHTML = `
+	<input type="text" class="username" />
+	<input type="password" class="password" />
+	<button>Log in</button>
+`
+</script>
+
+<input class="inputText" type="text" />
+<div class="container">
+  <button class="showButton">Show</button>
+</div>
+<script>
+const box = document.querySelector('.container')
+const input = document.querySelector('.inputText')
+let button = document.querySelector('.showButton')
+
+button.onclick = () => {
+  box.innerHTML = `
+  <h1>${input.value}</h1>
+    <button class="showButton">Show</button>
+	`
+  // When you click the button, its onclick function will replace
+  //   button element inside the box with the new innerHtml property.
+  // Now if you click the button again, nothing happens.
+    }
+
+const prepareTheButton = () => {
+    box.innerHTML = `
+    <h1>${input.value}</h1>
+    <button class="showButton">Show</button>
+    `
+    button = document.querySelector(".showButton")
+    button.onclick = prepareTheButton
+}
+
+button.onclick = prepareTheButton
+</script>
+
+<h1 class="heading"></h1>
+<script>
+const h1Element = document.querySelector('.heading')
+h1Element.innerText = "The hardest choices require the strongest wills."
+</script>

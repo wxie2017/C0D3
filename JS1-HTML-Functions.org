@@ -1,4 +1,4 @@
-# JS 1 - Arrays
+# JS 1 - HTML Functions
 
 * Preflight
 ** exercise 6
