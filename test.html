@@ -1,53 +1,279 @@
+<h1>js2 exercise 1</h1>
 <div>
-	<input type="text" class="username" />
-	<input type="password" class="password" />
-	<button>Sign in</button>
+  <h1 class="heading">Change Me</h1>
+  <input class="inputBox" type="text"/>
+  <button class="button">Submit</button>
+  <script>
+    const h1Element = document.querySelector('.heading')
+    const boxElement = document.querySelector('.inputBox')
+    const buttonElement = document.querySelector('.button')
+
+    buttonElement.onclick = () => {
+    h1Element.innerText = boxElement.value
+    boxElement.value=""
+    }
+  </script>
 </div>
 
-<div class="container">
-</div>
-<script>
-const box = document.querySelector('.container')
-box.innerHTML = `
-	<input type="text" class="username" />
-	<input type="password" class="password" />
-	<button>Log in</button>
-`
-</script>
+<h1>js2 exercise 2</h1>
+<div>
+  <div class="container"></div>
+  <script>
+    const box = document.querySelector('.container')
 
-<input class="inputText" type="text" />
-<div class="container">
-  <button class="showButton">Show</button>
-</div>
-<script>
-const box = document.querySelector('.container')
-const input = document.querySelector('.inputText')
-let button = document.querySelector('.showButton')
+    const startApp = () => {
+    box.innerHTML = `
+    <button class="start">Start</button>
+    `
+    const sButton = document.querySelector('.start')
 
-button.onclick = () => {
-  box.innerHTML = `
-  <h1>${input.value}</h1>
-    <button class="showButton">Show</button>
-	`
-  // When you click the button, its onclick function will replace
-  //   button element inside the box with the new innerHtml property.
-  // Now if you click the button again, nothing happens.
+    sButton.onclick = () => {
+    box.innerHTML = `
+    <input type="text" class="input" />
+    <button class="cancel">Cancel</button>
+    `
+    const cButton = document.querySelector('.cancel')
+    cButton.onclick = startApp
+    }
     }
 
-const prepareTheButton = () => {
-    box.innerHTML = `
-    <h1>${input.value}</h1>
-    <button class="showButton">Show</button>
-    `
-    button = document.querySelector(".showButton")
-    button.onclick = prepareTheButton
+    startApp()
+  </script>
+</div>
+
+<h1>js2 exercise 3</h1>
+<div class="container"> </div>
+<h1 class="display"></h1>
+
+<script>
+const containerElement = document.querySelector('.container')
+const displayElement = document.querySelector('.display')
+
+const solution = (a) => {
+  return (b) => {
+    return a + b
+  }
 }
 
-button.onclick = prepareTheButton
+const startApp3 = () => {
+  displayElement.innerText = ''
+  containerElement.innerHTML = `
+  <input class="startingInput" type="number"/>
+  <button class="start">Start</button>
+  `
+  const startButton = document.querySelector('.start')
+  const startingInput = document.querySelector('.startingInput')
+
+  startButton.onclick = () => {
+    const startValue = +startingInput.value
+    const add1 = solution(startValue)
+    displayElement.innerText = `${startValue} + `
+
+    containerElement.innerHTML = `
+  <input class="secondInput" type="number" />
+  <button class="add">Add</button>
+  <button class="cancel">GoBack</button>
+  `
+
+    const addButton = document.querySelector('.add')
+    addButton.onclick = () => {
+      const secondInput = document.querySelector('.secondInput')
+      const secondValue = +secondInput.value
+      const result = add1(secondValue)
+      displayElement.innerText = `${startValue} + ${secondValue} = ${result}`
+
+      secondInput.value = ''
+    }
+
+    const cancelButton = document.querySelector('.cancel')
+    cancelButton.onclick = startApp3
+  }
+}
+
+startApp3()
 </script>
 
-<h1 class="heading"></h1>
-<script>
-const h1Element = document.querySelector('.heading')
-h1Element.innerText = "The hardest choices require the strongest wills."
-</script>
+<h1>js2 exercise 4</h1>
+<div>
+  <h2 class="head4"></h2>
+  <input class="input4" type="number" />
+  <button class="button4">Repeat Hello</button>
+
+  <script>
+    repeatHello = (n, result="") => {
+    if (n > 0) {
+    return repeatHello(n-1, result+"Hello")
+    }
+    return result
+    }
+
+    const head4 = document.querySelector('.head4')
+    const input4 = document.querySelector('.input4')
+    const button4 = document.querySelector('.button4')
+
+    button4.onclick = () => {
+    head4.innerText = repeatHello(+input4.value)
+    }
+  </script>
+</div>
+
+<h1>js2 exercise 5</h1>
+<div>
+  <div class="div5"></div>
+  <input class="input5" type="text" />
+  <button class="button5">Split</button>
+
+  <script>
+    const split = (str, i=0, result="") => {
+    if (i < str.length) {
+            return split(str, i+1, result+'<h2>'+str[i]+'</h2>')
+            }
+            return result
+            }
+
+            const box5 = document.querySelector('.div5')
+            const input5 = document.querySelector('.input5')
+            const button5 = document.querySelector('.button5')
+
+            button5.onclick = () => {
+      box5.innerHTML = split(input5.value)
+      }
+  </script>
+</div>
+
+<h1>js2 exercise 6</h1>
+<div>
+  <div class="div6"></div>
+  <input class="input6" type="number" />
+  <button class="button6">Start</button>
+
+  <script>
+    const isPrime = (n, start=2) => {
+    if (n < start) {
+            return false
+            }
+
+            if (n === start) {
+            return true
+            }
+
+            if (n % start === 0) {
+            return false
+            }
+
+            return isPrime(n, start+1)
+            }
+
+            const allPrime = (n, start=2, result="") => {
+      if (n < start) {
+              return result
+              }
+
+              if (isPrime(start)) {
+              result = result+'<h2>'+start+'</h2>'
+              }
+
+              return allPrime(n, start+1, result)
+              }
+
+              const box6 = document.querySelector('.div6')
+              const input6 = document.querySelector('.input6')
+              const button6 = document.querySelector('.button6')
+
+              button6.onclick = () => {
+        box6.innerHTML = allPrime(input6.value)
+        }
+  </script>
+</div>
+
+<h1>js2 exercise 7</h1>
+<div>
+  <h2 class="head7"></h2>
+  <input class="input7" type="text" />
+  <button class="button7">Delay200ms</button>
+
+  <script>
+      const head7 = document.querySelector('.head7')
+      const input7 = document.querySelector('.input7')
+      const button7 = document.querySelector('.button7')
+
+      const displayAChar = (str, i=0, result="") => {
+      if (i < str.length) {
+              setTimeout(() => {
+      result = result + str[i]
+      head7.innerText = result
+      return displayAChar(str, i+1, result)}, 200)
+      }
+      return result
+      }
+
+      button7.onclick = () => {
+      displayAChar(input7.value)
+      }
+  </script>
+</div>
+
+<h1>js2 exercise 8</h1>
+<div>
+  <div class="box8"></div>
+  <h2 class="head8">0</h2>
+  <button class="button8">Start</button>
+
+  <script>
+    const head8 = document.querySelector('.head8')
+    const box8 = document.querySelector('.box8')
+    const button8 = document.querySelector('.button8')
+
+    const displayMs = (str, i=0) => {
+    if (button8.innerText === "Stop") {
+    setTimeout(() => {
+    i = i + 1
+    head8.innerText = i
+    return displayMs(str, i)}, 500)
+    }
+    return
+    }
+
+    button8.onclick = () => {
+    if (button8.innerText === "Start") {
+    button8.innerText = "Stop"
+    } else {
+    button8.innerText = "Start"
+    }
+
+    displayMs(button8.innerText)
+    }
+  </script>
+</div>
+
+<h1>js2 exercise 9</h1>
+<div>
+  <h2 class="head9">default</h2>
+  <input class="input9" type="text" />
+  <input class="timer9" type="number" />
+
+  <script>
+    const head9 = document.querySelector('.head9')
+    const input9 = document.querySelector('.input9')
+    const timer9 = document.querySelector('.timer9')
+
+    let hide = true
+
+    const blinking = () => {
+    head9.innerText = input9.value || "default"
+
+    if (hide) {
+    head9.innerText = ""
+    }
+    hide = !hide
+
+    const timer = timer9.value || 500
+
+    if (timer9.value > 10) {
+    setTimeout(blinking, timer)
+    }
+    }
+
+    blinking()
+  </script>
+</div>

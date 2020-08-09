@@ -1,4 +1,9 @@
 // jest test file
+const fn = require('./preflight.js')
+
+// jest fake timer
+jest.useFakeTimers()
+
 
 // test for removeCharX
 describe('removeCharX function', () => {
@@ -79,13 +84,16 @@ describe('reverso function', () => {
 
 // test for delayAndCall
 describe('delayAndCall function', () => {
-    it('should return hello', () => {
+    it('should return undefined after n miliseconds', () => {
         const n = 1000
         const fun = () => {
-            console.log('I am groot')
+            return 'I am groot'
         }
-        const result = fn.delayAndCall(n, fun)
-        expect(result).toEqual("I am groot")
+        const refun = fn.delayAndCall(n, fun)
+        const result = refun()
+        expect(result).toEqual()
+        jest.advanceTimersByTime(1000) //fastfowrd time
+        expect(result).toEqual()
     })
 })
 
@@ -94,17 +102,21 @@ describe('primeMachine function', () => {
     it('should return next 2 primes starting with a negative number', () => {
         const getPrime1 = fn.primeMachine(-2)
         expect(getPrime1()).toEqual(2)
+        getPrime1()
         expect(getPrime1()).toEqual(3)
     })
     it('should not return starting number if prime', () => {
         const getPrime2 = fn.primeMachine(5)
         expect(getPrime2()).toEqual(7)
+        getPrime2()
         expect(getPrime2()).toEqual(11)
     })
     it('should return next 3 primes starting at 10', () => {
         const getPrime3 = fn.primeMachine(10)
         expect(getPrime3()).toEqual(11)
+        getPrime3()
         expect(getPrime3()).toEqual(13)
+        getPrime3()
         expect(getPrime3()).toEqual(17)
     })
 })

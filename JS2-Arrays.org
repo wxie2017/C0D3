@@ -1,4 +1,4 @@
-# JS 1 - Arrays
+# JS 2 - Arrays
 
 * Preflight
 ** jest

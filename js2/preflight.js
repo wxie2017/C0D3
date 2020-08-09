@@ -6,7 +6,7 @@ const allFuns = {} // define the test object
 //Write a function named removeCharX that removes the character at the given index from a string.
 
 const removeCharX = (str, i, j=0, result="") => {
-    if ((i > 0) && (i < str.length)) {
+    if ((i >= 0) && (i < str.length)) {
         if (j < str.length) {
             if (j !== i) {
               result = result + str[j]
