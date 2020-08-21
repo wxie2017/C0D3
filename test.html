@@ -277,3 +277,140 @@ startApp3()
     blinking()
   </script>
 </div>
+
+<h1>js2 excercise a1</h1>
+<div>
+  <h2>count down</h2>
+  <input class="input_a1" type="number" />
+  <button class="button_a1">Start</button>
+  <h2 class="head_a1"></h2>
+
+  <script>
+    const input_a1 = document.querySelector(".input_a1")
+    const button_a1 = document.querySelector(".button_a1")
+    const head_a1 = document.querySelector(".head_a1")
+
+    const countDown = (n, t=1000) => {
+    if (n >= 0) {
+    head_a1.innerText = n
+    setTimeout(() => {
+    countDown(n-1)
+    }, t)
+    }
+    }
+
+    button_a1.onclick = () => {
+    countDown(input_a1.value)
+    }
+
+  </script>
+</div>
+
+<h1>js2 exercise a2</h1>
+<div>
+  <input class="input_a2" type="text" />
+  <button class="button_a2">Save</button>
+  <div class="box_a2"></div>
+
+  <script>
+    const input_a2 = document.querySelector(".input_a2")
+    const button_a2 = document.querySelector(".button_a2")
+    const box_a2 = document.querySelector(".box_a2")
+
+    button_a2.onclick = () => {
+    box_a2.innerHTML = `${box_a2.innerHTML} <h2>${input_a2.value}</h2>`
+    input_a2.value = ''
+    }
+</script>
+</div>
+
+<h1>js2 exercise a3</h1>
+<div>
+  <div class="box_a3"></div>
+  <h2 class="head_a3"></h2>
+
+  <script>
+    const box_a3 = document.querySelector(".box_a3")
+    const head_a3 = document.querySelector(".head_a3")
+
+    const letterFilter = (str, c, i=0, result="") => {
+    if (i < str.length) {
+            if (c !== str[i]) {
+            result = result + str[i]
+            }
+            return letterFilter(str, c, i+1, result)
+            }
+
+            return result
+            }
+
+            appLoop = () => {
+
+      let filterC = ""
+      head_a3.innerText = ""
+
+      box_a3.innerHTML = `
+      <input class="input_a3" type="text" />
+      <button class="startButton_a3">Start</button>
+      `
+      const input_a3 = document.querySelector(".input_a3")
+      const startButton_a3 = document.querySelector(".startButton_a3")
+
+      startButton_a3.onclick = () => {
+      filterC = input_a3.value
+
+      box_a3.innerHTML = `
+      <input class="input_a3_1" type="text" />
+      <button class="filterButton">Filter</button>
+      <button class="backButton">Back</button>
+      `
+      const input_a3_1 = document.querySelector(".input_a3_1")
+      const filterButton = document.querySelector(".filterButton")
+
+      filterButton.onclick = () => {
+      head_a3.innerText = letterFilter(input_a3_1.value, filterC)
+      input_a3_1.value = ""
+      }
+
+      const backButton = document.querySelector(".backButton")
+      backButton.onclick = appLoop
+      }
+      }
+
+      appLoop()
+  </script>
+</div>
+
+<h1>js2 exercise a4</h1>
+<div>
+  <button class="button_a4">ADD1</button>
+  <h2 class="head_a4">0</h2>
+
+  <script>
+    const button_a4 = document.querySelector(".button_a4")
+    const head_a4 = document.querySelector(".head_a4")
+
+    button_a4.onclick = () => {
+    head_a4.innerText = +head_a4.innerText + 1
+    }
+  </script>
+</div>
+
+<h1>js2 exercise a5</h1>
+<div>
+  <button class="button_a5">toggle</button>
+  <h2 class="head_a5">hello world</h2>
+
+  <script>
+    const button_a5 = document.querySelector(".button_a5")
+    const head_a5 = document.querySelector(".head_a5")
+
+    button_a5.onclick = () => {
+    if (head_a5.innerText === "hello world") {
+    head_a5.innerText = ""
+    } else {
+    head_a5.innerText = "hello world"
+    }
+    }
+  </script>
+</div>

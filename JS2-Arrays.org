@@ -22,3 +22,100 @@ all variables for the children elements are no longer usable.
 If you do not wish to create new HTML elements and simply wish to change the
 text inside an element, you should use the innerText property. The innerText
 property will treat your strings as literal strings instead of html tags.
+* Arrays
+Strings are not arrays.
+
+Numbers, strings, and booleans are primitive data types.
+The value of a primitive data type variable can only contain a single thing (be
+it a string or a number or whatever).
+
+All other data types are non-primitive data type. For example, array is a
+non-primitive data type. What this means is that when you assign an array to a
+variable, the variable stores an address (also known as a reference) to the
+actual array data, not the array data itself.
+
+#+BEGIN_SRC js
+const a = [1,2,3] === [1,2,3] // still false!
+// the computer is creating 2 arrays and they have different addresses
+#+END_SRC
+
+For all non-primitive data, you should always declare them with a const because
+their address does not change. When declaring non-primitive variables, only use
+let when you plan to reuse the variable to store other addresses.
+** push()
+The Push() method takes one or more elements as arguments and adds them to the
+end of an array. Push() returns the new length of the array.
+** pop()
+Pop() method removes the last element in an array and returns the removed element.
+If the array is empty, undefined is returned.
+** shift()
+Shift() is like pop() but in the opposite direction. It removes the first
+element in the array and returns the removed element. It returns undefined if
+the array is empty.
+** unshift()
+Unshift() is like push but in the opposite direction. It takes in one or more
+elements as arguments and adds them to the beginning of the array, and returns
+the new array length.
+** splice()
+The splice() method changes the contents of an array by removing or replacing
+existing elements and/or adding new elements in place. An array containing the
+deleted elements will be trturned.
+The syntax of splice() is:
+#+BEGIN_SRC js
+let arrDeletedItems = array.splice(start[, deleteCount[, item1[, item2[,...]]]])
+
+const fruits = ["Banana", "Orange", "Apple", "Mango"]
+let removed = fruits.splice(2, 1, "Lemon", "Kiwi")
+// First, 1 element is removed starting at index 2, so fruits becomes
+//    ["Banana", "Orange", "Mango"]
+// Next, the rest of the parameters are added in at index 2
+// Result: ["Banana", "Orange", "Lemon", "Kiwi", "Mango"]
+
+removed = fruits2.splice(-2, 1)
+// fruits2 was ["Apple", "Mango", "Pear", "Orange"]
+// remove 1 element, 2nd element from end which is "Pear"
+// fruits2 has ["Apple", "Mango", "Orange"]
+// removed has ["Pear"]
+
+removed = fruits2.splice(1)
+// fruits2 was ["Apple", "Mango", "Orange"]
+// remove all element from index 1 onwards ("Mango", "Orange" removed)
+// fruits2 has ["Apple"]
+// removed has ["Mango", "Orange"]
+#+END_SRC
+** map
+Map takes in a function, applies the function to every element in the array, and
+returns a new array of the same length.
+** Cloning an Array
+A quicker way of cloning an array is to use [...arr].
+#+BEGIN_SRC js
+const farm = ["sheep", "cow", "pig"]
+const farm1 = ["horse", "duck", "llama"]
+const farm2 = [...farm, ...farm, ...farm1]
+// farm2 is ["sheep", "cow", "pig", "sheep", "cow", "pig", "horse", "duck", "llama"]
+#+END_SRC
+** forEach
+forEach works exactly the same as map above. The only difference is that forEach
+runs its input function on each element and returns undefined rather than a new
+array.
+** filter
+Filter takes a function that runs on each element in the original array to
+decide whether to include it in the returned array. If the input function
+returns a truthy value, the element will be in the array. If the input function
+returns a falsey value, the element will be excluded from the array.
+#+BEGIN_SRC js
+const ages = [22, 26, 80, 48, 32]
+const youngerThanCardiB = ages.filter( (e) => {
+  return e < 27
+}) // youngerThanCardiB is [22, 26]
+#+END_SRC
+** find
+find takes in an input function, and returns the first element which the
+function returns a truthy value for. If nothing is found, find returns
+undefined.
+#+BEGIN_SRC js
+const ages = [22, 26, 80, 48, 32, 79]
+const olderThanHarrisonFord = ages.find( (e) => {
+  return e > 77
+}) // olderThanHarrisonFord is 80
+#+END_SRC
