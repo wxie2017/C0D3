@@ -119,3 +119,25 @@ const olderThanHarrisonFord = ages.find( (e) => {
   return e > 77
 }) // olderThanHarrisonFord is 80
 #+END_SRC
+** reduce
+The reduce function has 2 parameters, a function and a starting value.
+When the input function is called, it will receive 4 parameters:
+the return value from the previous input function call or **starting value** (for the very first call),
+the current element in the array,
+the current index of the element,
+and the array itself.
+** prototype inheritance
+Here are the steps to add your own customized function for arrays:
+
+1. Define your function using `function( ... parameters ...) { ... code ...}`.
+2. Assign your function to `Array.prototype`.
+3. Access array properties using the `this` keyword.
+    - Note that `this` is a system keyword. **Do not** name your variables `this`!
+
+When the function is running, `this` refers to the object that comes before `.`.
+#+BEGIN_SRC js
+Array.prototype.last = function() {
+  return this[ this.length-1 ]
+}
+[1,2,3].last() //3. When the last function is run, 'this' refers to [1,2,3]
+#+END_SRC

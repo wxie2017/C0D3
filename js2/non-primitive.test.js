@@ -393,3 +393,248 @@ describe('clone function', () => {
         expect(result).toEqual(["a", "b", "c"])
     })
 })
+
+// test for noMoreEvens
+describe('noMoreEvens function', () => {
+    const a = [1, 2, 3, 4, 5, 6]
+    it('should not modify the original array', () => {
+        const original = [...a]
+        fn.noMoreEvens(a)
+        expect(a).toEqual(original)
+    })
+    it('should return an array without even numbers', () => {
+        const result = fn.noMoreEvens(a)
+        expect(result).toEqual([1, 3, 5])
+    })
+})
+
+// test for noEmpty
+describe('noEmpty function', () => {
+    const a = ["", "a", "", "", "b", "c", "",""]
+    it('should not modify the original array', () => {
+        const original = [...a]
+        fn.noEmpty(a)
+        expect(a).toEqual(original)
+    })
+    it('should return an array without empty strings', () => {
+        const result = fn.noEmpty(a)
+        expect(result).toEqual(["a", "b", "c"])
+    })
+})
+
+// test for primesOnly
+describe('primesOnly function', () => {
+    const a = [1, 3, 2, 6, 10, 11, 13]
+    it('should not modify the original array', () => {
+        const original = [...a]
+        fn.primesOnly(a)
+        expect(a).toEqual(original)
+    })
+    it('should return only prime numbers', () => {
+        const result = fn.primesOnly(a)
+        expect(result).toEqual([3, 2, 11, 13])
+    })
+})
+
+// test for firstPrime
+describe('firstPrime function', () => {
+    const a = [1, 3, 2, 6, 10, 11, 13]
+    it('should not modify the original array', () => {
+        const original = [...a]
+        fn.firstPrime(a)
+        expect(a).toEqual(original)
+    })
+    it('should return the first prime', () => {
+        const result = fn.firstPrime(a)
+        expect(result).toEqual(3)
+    })
+})
+
+// test for sum
+describe('sum function', () => {
+    const a = [1, 3, 2]
+    it('should not modify the original array', () => {
+        const original = [...a]
+        fn.sum(a)
+        expect(a).toEqual(original)
+    })
+    it('should return the sum of elements', () => {
+        const result = fn.sum(a)
+        expect(result).toEqual(6)
+    })
+})
+
+// test for longest
+describe('longest function', () => {
+    const a = ["", "a", "", "123", "12"]
+    it('should not modify the original array', () => {
+        const original = [...a]
+        fn.longest(a)
+        expect(a).toEqual(original)
+    })
+    it('should return the longest string', () => {
+        const result = fn.longest(a)
+        expect(result).toEqual("123")
+    })
+})
+
+// test for matches
+describe('matches function', () => {
+    const a = ["", "a", "", "123", "12"]
+    x = ""
+    it('should not modify the original array', () => {
+        const original = [...a]
+        fn.matches(a, x)
+        expect(a).toEqual(original)
+    })
+    it('should return the number of matches', () => {
+        const result = fn.matches(a, x)
+        expect(result).toEqual(2)
+    })
+})
+
+// test for combineLess5
+describe('combineLess5 function', () => {
+    const a = ["", "a", "", "12345", "12", "bc", "defghi"]
+    it('should not modify the original array', () => {
+        const original = [...a]
+        fn.combineLess5(a)
+        expect(a).toEqual(original)
+    })
+    it('should return the combined string of length < 5', () => {
+        const result = fn.combineLess5(a)
+        expect(result).toEqual("a12bc")
+    })
+})
+
+// test for largerThan5
+describe('largerThan5 function', () => {
+    const a = [1, 2, 3, 5, 6, 7, 4, 8, 9, 0]
+    it('should not modify the original array', () => {
+        const original = [...a]
+        fn.largerThan5(a)
+        expect(a).toEqual(original)
+    })
+    it('should return the array of elements > 5', () => {
+        const result = fn.largerThan5(a)
+        expect(result).toEqual([6, 7, 8 ,9])
+    })
+})
+
+// test getEvents function
+describe('getEvens function', () => {
+    it('should pull even numbers from various positions', () => {
+        const result = [9, 80, 11, 2].getEvens()
+        expect(result).toEqual([80, 2])
+    })
+    it('should pull even numbers from concurrent positions', () => {
+        const result = [2, 4, 6, 7, 8].getEvens()
+        expect(result).toEqual([2, 4, 6, 8])
+    })
+    it('should have no result if no evens', () => {
+        const result = [1, 3, 9, 21].getEvens()
+        expect(result).toEqual([])
+    })
+})
+
+// test for prototype sum
+describe('prototype sum function', () => {
+    const a = [1, 3, 2]
+    it('should not modify the original array', () => {
+        const original = [...a]
+        a.sum()
+        expect(a).toEqual(original)
+    })
+    it('should return the sum of numbers', () => {
+        const result = a.sum()
+        expect(result).toEqual(6)
+    })
+    const s = ["a", "b", "c"]
+    it('should return the sum of stings', () => {
+        const result = s.sum()
+        expect(result).toEqual("abc")
+    })
+})
+
+// test for prototype pad
+describe('pad function', () => {
+    it('should modify the original array', () => {
+        const arr = ["Doctor"]
+        arr.pad(1, "Strange")
+        expect(arr).toEqual(["Doctor", "Strange"])
+    })
+    it('should pad multiple times', () => {
+        const arr = ["<button name='submit'></button>", "<div></div>"]
+        arr.pad(2, "<br/>")
+        expect(arr).toEqual(["<button name='submit'></button>", "<div></div>", "<br/>", "<br/>"])
+    })
+    it('should return same array when given negative pad number', () => {
+        const result = ["Quill", "Gamora"].pad(-2, "Drax")
+        expect(result).toEqual(["Quill", "Gamora"])
+    })
+    it('should return same array when given zero pad number', () => {
+        const result = ["Quill", "Gamora"].pad(0, "Drax")
+        expect(result).toEqual(["Quill", "Gamora"])
+    })
+})
+
+// test for prototype fizzbuzz
+describe('fizzbuzz function', () => {
+    it('should change numbers divisible by 3 to fizz', () => {
+        const magicNumbers = [1, 2, 3, 6, 19, 18]
+        magicNumbers.fizzbuzz()
+        expect(magicNumbers).toEqual([1, 2, "fizz", "fizz", 19, "fizz"])
+    })
+    it('should change numbers divisible by 5 to buzz', () => {
+        const magicNumbers = [1, 2, 5, 10, 11]
+        magicNumbers.fizzbuzz()
+        expect(magicNumbers).toEqual([1, 2, "buzz", "buzz", 11])
+    })
+    it('should change numbers divisible by 15 to fizzbuzz', () => {
+        const magicNumbers = [1, 2, 4, 15, 16, 30]
+        magicNumbers.fizzbuzz()
+        expect(magicNumbers).toEqual([1, 2, 4, "fizzbuzz", 16, "fizzbuzz"])
+    })
+    it('should correctly change 3 to fizz, 5 to buzz, and 15 to fizzbuzz', () => {
+        const magicNumbers = [9, 80, 12, 2, 30]
+        magicNumbers.fizzbuzz()
+        expect(magicNumbers).toEqual(["fizz", "buzz", "fizz", 2, "fizzbuzz"])
+    })
+})
+
+// test for prototype removeEvens
+describe('removeEvens function', () => {
+    it('should remove even numbers', () => {
+        const magicNumbers = [1, 2, 3, 6, 19, 18]
+        result = magicNumbers.removeEvens()
+        expect(result).toEqual([1, 3, 19])
+    })
+})
+
+// test for prototype getIterator
+describe('getIterator function', () => {
+    it('should iterate through 3 elements', () => {
+        const iterate = ["PayPal", "Google", "Netflix"].getIterator()
+        expect(iterate()).toEqual("PayPal")
+        expect(iterate()).toEqual("Google")
+        expect(iterate()).toEqual("Netflix")
+    })
+    it('should return to beginning once done', () => {
+        const iterate = [9, 80, 12, 2].getIterator()
+        expect(iterate()).toEqual(9)
+        expect(iterate()).toEqual(80)
+        expect(iterate()).toEqual(12)
+        expect(iterate()).toEqual(2)
+        expect(iterate()).toEqual(9)
+        expect(iterate()).toEqual(80)
+    })
+    it('should return undefined for empty array iterator', () => {
+        const iterate = [].getIterator()
+        expect(iterate()).toEqual(undefined)
+    })
+    it('should iterate through one element', () => {
+        const iterate = ["Ironman"].getIterator()
+        expect(iterate()).toEqual("Ironman")
+        expect(iterate()).toEqual("Ironman")
+    })
+})

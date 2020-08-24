@@ -17,14 +17,14 @@ const selectiveZero = (a, n, i=0) => {
 }
 
 //Write a function named largest that returns the largest number in an array.
-const largest = (a, i=1, result=a[0]) => {
-    if (i < a.length) {
-        if (a[i] > result) {
-            result = a[i]
+const largest = (a) => {
+    return a.reduce((acc, e, i, a) => {
+        if (acc > e) {
+            return acc
         }
-        return largest(a, i+1, result)
-    }
-    return result
+
+        return e
+    }, a[0])
 }
 
 //Write a function named firstXToZero that sets the value of the first X
@@ -233,6 +233,174 @@ const clone = (a) => {
     })
 }
 
+//Use filter to write a function called noMoreEvens that copies an array,
+//removing all even numbers.
+const notEven = (e) => {
+    return (e % 2)
+}
+
+const noMoreEvens = (a) => {
+    return a.filter(notEven)
+}
+
+//Write a function that takes in an array of strings and removes the empty strings
+const notEmpty = (s) => {
+    return s.length
+}
+
+const noEmpty = (a) => {
+    return a.filter(notEmpty)
+}
+
+//Write a function called primesOnly that copies an array but keeps only prime numbers.
+const primesOnly = (arr) => {
+  return arr.filter( (e) => {
+    return isPrime(e)
+  })
+}
+
+//Write a function called firstPrime that finds the first prime number in an array.
+const firstPrime = (a) => {
+    return a.find((e) => {
+        return isPrime(e)
+    })
+}
+
+//Write a function called sum that adds up all the elements of an array.
+const sum = (a) => {
+    return a.reduce((acc, e, i, a) => {
+        return acc+e
+    }, 0)
+}
+
+//Write a function called longest that returns the longest string out of an array of strings.
+const longest = (a) => {
+    return a.reduce((acc, e, i, a) => {
+        if (acc.length > e.length) {
+            return acc
+        }
+
+        return e
+    }, a[0])
+}
+
+//Write a function called matches that counts the how many times a given element occurs in an array.
+const matches = (a, x) => {
+    return a.reduce((acc, e, i, a) => {
+        if (x === e) {
+            return(acc + 1)
+        }
+
+        return acc
+    }, 0)
+}
+
+//Write a function called combineLess5 that takes in an array of strings, and returns a combined string of all strings with length < 5.
+const combineLess5 = (a) => {
+    return a.reduce((acc, e, i, a) => {
+        if (e.length < 5) {
+            return acc+e
+        }
+
+        return acc
+    }, "")
+}
+
+//Write a function called largerThan5 that takes in an array, and returns an array of numbers larger than 5.
+const largerThan5 = (a) => {
+    return a.reduce((acc, e, i, a) => {
+        if (e > 5) {
+            acc.push(e)
+        }
+
+        return acc
+    }, [])
+}
+
+//Create a prototype function called getEvens that returns a new array of all the even numbers in an array of numbers.
+Array.prototype.getEvens = function() {
+    return this.filter((e) => {
+        return (e % 2 === 0)
+    })
+}
+
+//Create a prototype function called sum that adds all the elements of an array together.
+Array.prototype.sum = function() {
+    if ( this.length === 0 ) {
+	return undefined
+    }
+
+    let startingValue = ''
+
+    if (typeof( this[0] ) === 'number') {
+        startingValue = 0
+    }
+
+    return this.reduce((acc, e) => {
+        return acc+e
+    }, startingValue)
+}
+
+//Create a prototype function called pad that adds a given string to an array a certain number of times.
+Array.prototype.pad = function(n, s) {
+    if (n > 0) {
+        this.push(s)
+        return this.pad(n-1, s)
+    }
+
+    return this
+}
+
+//Create a prototype function called fizzbuzz that changes the original array.
+//All numbers divisible by 3 will be converted to "fizz",
+//all numbers divisible by 5 will be converted to "buzz",
+//and all numbers divisible by both 3 and 5 will be converted to "fizzbuzz".
+Array.prototype.fizzbuzz = function (i=0) {
+    if (i === this.length) {
+        return this
+    }
+
+    if ((this[i] % 3 === 0) && ((this[i] % 5) === 0)) {
+        this[i] = "fizzbuzz"
+    }
+
+    if ((this[i] % 3) === 0) {
+        this[i] = "fizz"
+    }
+
+    if ((this[i] % 5) === 0) {
+        this[i] = "buzz"
+    }
+
+    return this.fizzbuzz(i+1)
+}
+
+//Create a prototype function called removeEvens, which removes all the even numbers from the array.
+Array.prototype.removeEvens = function() {
+    return this.filter((e) => {
+        return (e % 2 !== 0)
+    })
+}
+
+//Create a prototype function called getIterator that returns a function.
+//When the returned function is called, it returns the next element of the array.
+Array.prototype.getIterator = function(i=0, result) {
+    return () => {
+        result = this[i]
+
+        if (i < this.length - 1) {
+            i = i + 1
+        } else {
+            i = 0
+        }
+
+        return result
+    }
+}
+
+
+allFuns.largerThan5 = largerThan5
+allFuns.combineLess5 = combineLess5
 allFuns.selectiveZero = selectiveZero
 allFuns.largest = largest
 allFuns.firstXToZero = firstXToZero
@@ -251,6 +419,13 @@ allFuns.firstLetters = firstLetters
 allFuns.nonPrimeToZero = nonPrimeToZero
 allFuns.append = append
 allFuns.clone = clone
+allFuns.noMoreEvens = noMoreEvens
+allFuns.noEmpty = noEmpty
+allFuns.primesOnly = primesOnly
+allFuns.firstPrime = firstPrime
+allFuns.sum = sum
+allFuns.longest = longest
+allFuns.matches = matches
 
 
 module.exports = allFuns // end of test
