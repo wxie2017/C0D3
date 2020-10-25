@@ -1,0 +1,24 @@
+<div>
+  <h1>display lessons</h1>
+  <div class='lesson'></div>
+
+  <script>
+    const lesson = document.querySelector('.lesson')
+    fetch('https://c0d3.com/api/lessons').then( (r) => {
+    return r.json()
+    }).then( (data) => {
+    content.innerHTML = data.reduce((acc, lesson) => {
+    return acc + `
+    <h2 class="title">${lesson.title}</h2>
+    `
+    }, '')
+
+    const titleElements = content.querySelectorAll('.title')
+    titleElements.forEach((e, i) => {
+    e.onclick = () => {
+    alert(data[i].description)
+    }
+    })
+    })
+  </script>
+</div>

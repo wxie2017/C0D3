@@ -1,0 +1,15 @@
+<h1>myFun.js</h1><h1>myObj.js</h1><h1>myUse.js</h1><h1>objects.js</h1><h1>objects.test.js</h1><h1>package.json</h1>
+
+<div>
+  <h1 class="display"></h1>
+  <script>
+    const display = document.querySelector('.display')
+    fetch('https://c0d3.com/api/lessons').then( (res) => {
+    return res.json()
+    }).then( (data) => {
+    display.innerText = `there are ${data.length} lessons`
+    })
+  </script>
+</div>
+
+<h1>END</h1>

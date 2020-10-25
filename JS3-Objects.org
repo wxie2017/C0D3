@@ -1,0 +1,498 @@
+# JS 3 - Objects
+
+* HTML
+** addEventListener
+addEventListener('eventName', function)
+
+#+BEGIN_SRC html
+<button class="submit1">Click Me</button>
+<script>
+    const button1 = document.querySelector('.submit1')
+    button1.addEventListener('click', () => {
+      alert("Ouch!")
+    })
+</script>
+#+END_SRC
+
+The first argument, 'click', is a string event that is supported in the browser.
+Other events you can add events for include mouseenter, mouseleave, mousemove,
+and keyup.
+** Elements
+select allows you to build dropdown menus. The choices go inside option
+elements, which are children of the select element.
+
+If we have an array of strings that we want to use for the options, we can use
+reduce to generate string tags and then set the innerHTML property of the
+select:
+#+BEGIN_SRC html
+<select class="selectContainer"></select>
+<script>
+const data = ["Charmander", "Squirtle", "Caterpie"]
+const select = document.querySelector('.selectContainer')
+select.innerHTML = data.reduce( (acc, e) => {
+  return acc + `
+    <option>${e}</option>
+  `
+}, "")
+</script>
+#+END_SRC
+
+* Browser Functions
+** JSON.stringify
+When data (number, boolean, string, array, objects) is converted into a string,
+the string is called JSON. JSON stands for JavaScript Object Notation.
+
+Databases also store data as strings, so if you want to store an array of names
+into the database sometimes you must convert your data to a string first.
+
+cyclic data, which can happen in non-primitive data types, and functions cannot
+be stringified.
+
+#+BEGIN_SRC js
+const arr = [-18, "Charizard", true]
+const strArr = JSON.stringify(arr)
+// strArr is '[-18, "Charizard", true]'
+#+END_SRC
+** JSON.parse
+This function takes a string and parses, or interprets it as JavaScript data.
+** JSON
+JSON is the string that gets returned by JSON.stringify and the argument you
+pass into JSON.parse.
+
+JSON.stringify( data ) ——> JSON ——> JSON.parse(JSON) ——> data
+** LocalStorage
+LocalStorage lets you store data, like a database in the browser.
+*** localStorage.setItem
+localStorage.setItem is a function that takes in 2 strings.
+The first string tells the browser which title to give the data.
+The second string is the data to store.
+*** localStorage.getItem
+This function takes in only a string, the title of the data to retrieve, and
+returns the data.
+*** document.querySelectorAll
+It returns an array of all the elements that match the query.
+
+* Objects
+** define objects
+Objects have a string label. The label is called a key and the content
+is called the value. Values can be anything, including a function!
+To create an object you use {}.
+#+BEGIN_SRC js
+const student1 = {
+  first: "Harry",
+  last: "Potter",
+	age: 25
+}
+
+const student2 = {
+  first: "Ron",
+  last: "Weasley",
+	age: 24
+}
+
+const total = student1.age + student2.age // total is 49
+#+END_SRC
+
+In the example, first is the key, "Harry" is the value, etc.
+
+** Variables
+You can also access the values of an object using the [] notation.
+To get a value in an object, the code is very similar to getting a
+value in an array. We pass in a string (key) instead of an index number.
+
+#+BEGIN_SRC js
+const student = {
+  first: 'Harry',
+  last: 'Potter',
+  age: 25
+}
+
+const firstName = student['first'] // firstName has the value 'Harry'
+
+const student2 = student
+student2['name'] = 'last'
+/*
+student2 is the same as student, which is:
+{
+  name: 'last',
+  first: 'Harry',
+  last: 'Potter',
+  age: 25
+}
+*/
+
+student2[student2.name] = "Weasley"
+/*
+Notice how student2.name is a variable that contains the string 'last'
+Therefore, it evaluates to
+student2.last = 'Weasley'
+
+student2 is the same as student, which is:
+{
+  name: 'last',
+  first: 'Harry',
+  last: 'Weasley',
+  age: 25
+}
+*/
+#+END_SRC
+
+** Object Helpers
+*** Object.keys
+This function takes in an object and returns an array of keys in the object.
+*** Object.values
+This function takes in an object and returns an array of values in the object.
+*** Object.entries
+This function takes in an object and returns an array. Each element of the array
+is an array with 2 elements, a key and its corresponding value in the object.
+*** Object.prototype.hasOwnProperty
+The hasOwnProperty method allows us to check if a particular property exists
+ONLY on the object in context and not down the prototype chain of the object.
+#+BEGIN_SRC js
+const myObj = {
+	name: 'test',
+	age: 100
+}
+
+myObj.hasOwnProperty('name')     // true
+!!myObj['test']                  // true
+
+myObj.hasOwnProperty('age')      // true
+!!myObj['age']                   // true
+
+myObj.hasOwnProperty('height')   // false
+!!myObj['height']                // false
+
+myObj.hasOwnProperty('toString') // FALSE
+!!myObj['toString']              // TRUE
+#+END_SRC
+*** delete
+This function deletes the key (and its value) from an object.
+
+** Prototype Inheritance
+1. Define your function using function( ... params ... ) { ... code ...}
+2. Assign your function to Object.prototype
+3. Access object properties using the this keyword
+#+BEGIN_SRC js
+Object.prototype.forEach = function(fun, i = 0, entries = Object.entries(this)) {
+    if(i === entries.length) return
+    fun(entries[i][1], entries[i][0])
+    return this.forEach(fun, i+1)
+}
+#+END_SRC
+
+You can also add new properties to this using prototype functions.
+#+BEGIN_SRC js
+Object.prototype.eat = function(value) {
+  const num = this.data || 0
+  if (value < num) {
+    return
+  }
+  this.data = value
+}
+
+const a = { name: "iron" }
+a.eat(5)
+// a is: { name: "iron", data: 5 }
+#+END_SRC
+
+** The "new" Keyword
+When you construct a new Object with the new keyword.
+#+BEGIN_SRC js
+function Person(name, age) {
+  this.name = name
+  this.age = age
+}
+
+const me = new Person('Joe', 24)
+#+END_SRC
+
+** Arrays as Objects
+In reality, an array is actually an object, with special status (you can use
+numbers as keys, etc). You can add keys and values to arrays!
+
+** Function vs. Fat Arrow
+There are two ways to write a function:
+- `(...) => {...}` (the "fat arrow" method): Taught in JS0
+- `function(...) {...}` First introduced in this chapter for writing prototype
+  functions
+What is the difference between the two function declarations?
+The difference has to do with the this keyword.
+The Fat Arrow is a lighter way to write functions because unlike the old way of
+writing function, fat arrow functions do not create a this variable.
+
+** Import / Export
+You have functions that you want to use in other files. You can simply give the
+exports key of the module object a value. Whatever value you set will be
+exported. module.exports is a keyword provided by nodeJS.
+Any file that exports something can be called a library.
+Import use `require` to use the exports from other files.
+#+BEGIN_SRC js
+// myObj takes the value of module.exports, which is an object
+const myObj = require('./helper1.js')
+#+END_SRC
+
+*** Libraries
+A simple library that does not require any download is fs, a library that gives
+you functions to interact with the files and folders on your computer.
+#+BEGIN_SRC js
+const fs = require('fs')
+fs.readdir('./', (err, files) => {
+  console.log(files) // files should be an array
+})
+#+END_SRC
+
+fs.readdir takes in 2 arguments, a string and a function.
+fs.writeFile takes in 3 arguments:
+- string (filename)
+- string (file content)
+- function (to run when the function has finished creating the file; in case you
+  want to check for errors or inform the user that the write succeeded)
+#+BEGIN_SRC js
+fs.writeFile('./today.txt', 'today is a beautiful day', () => {})
+#+END_SRC
+*** APIs
+An API (application programming interface) is an interface that other engineers
+set up for you to interact with.
+There are many libraries we can use to send a request, and the request library
+is one of them. You might have noticed it in the above examples. You can use
+this library to send requests to APIs and even to retrieve web pages like your
+browser does.
+#+BEGIN_SRC shell
+npm install request
+#+END_SRC
+
+*** URL
+ A typical URL looks like
+ #+BEGIN_SRC html
+https://macys.com/shoes?size=4&brand=allbirds&type=outdoors
+ #+END_SRC
+
+ - **Protocol**: Specifies **how** data is sent over the Internet: _https_
+ - **Hostname**: Helps identify **where** to send a request to: _macys.com_
+ - **Path**: Helps the server determine **what** to look: _shoes_
+ - **Query Parameters**: Helps the server determine **what** to do with the request.
+   Query parameters should be used for data. `&` separates the different pieces
+   of data: _size=4&brand=allbirds&type=outdoors_
+#+BEGIN_SRC js
+request(“<API ADDRESS HERE>”, (err, res, data) => { console.log(data) })
+#+END_SRC
+
+*** promise
+If you are not careful when using the request library, you may end up in
+callback hell - complex nested `request` calls.
+To avoid making mistakes like the above, functions can return an object called a
+promise. A promise represents the eventual result of an asynchronous action
+(e.g. making a network request, writing files to the filesystem).
+The two most commonly used promise methods are:
+1. `then`
+    - `then` expects a function argument, which will be called when the promise
+      is done.
+
+    - When the promise is eventually fulfilled, `then` receives the resulting
+      value and calls the function, passing it this value as an argument.
+
+    - The function can return any value (numbers, strings, or any other data).
+
+    - Finally, `then` returns another promise with the value returned by the
+      function.
+
+2. `catch`
+    - `catch` expects a function argument, which will be called when the promise
+      encounters an error.
+
+    - When the promise encounters an error, `catch` receives an error object and
+      calls the function, passing it this error as an argument
+
+*** Axios
+#+BEGIN_SRC shell
+npm install axios
+#+END_SRC
+axios is a library that also sends requests, but unlike request, where you pass
+in a function as the second argument, axios returns a promise, and you pass the
+next function into the promise's then function.
+Instead of passing a function as a second argument, you pass the function as an
+argument into the return promise's then function.
+
+*** Fetch
+#+BEGIN_SRC shell
+npm install node-fetch
+#+END_SRC
+The browser provides you with a function called fetch that allows you to send
+requests and returns a promise.
+#+BEGIN_SRC html
+<h1 class="display"></h1>
+<script>
+const display = document.querySelector('.display')
+fetch('https://c0d3.com/api/lessons').then( (res) => {
+  return res.json()
+}).then( (data) => {
+  display.innerText = `there are ${data.length} lessons`
+})
+</script>
+#+END_SRC
+Note that when using fetch in the browser we don't need to require it; the
+browser supports fetch automatically.
+Because the browser only supports fetch, software engineers prefer to use the
+node-fetch library instead of axios when writing code to run on the computer.
+
+*** AJAX
+If someone tells you they know ajax, it means that they know how to send
+requests from the browser.
+If you are able to run the examples above on the browser, it means that you know
+how to use fetch to send a request from the browser. So you can now claim that
+you know ajax too!
+
+*** Promise.all
+Many times you may want to send more than one request at once.
+To do this, you can use Promise.all, which takes in an array of promise objects
+and returns a promise. When the then function runs, the argument function will
+get an array of responses.
+#+BEGIN_SRC js
+const fetch = require('node-fetch')
+
+const pokeNumbers = [
+	37, // vulpix
+	38, // ninetales
+	39, // jigglypuff
+	40 // wigglytuff
+]
+
+const arrayPromises = pokeNumbers.map( (num) => {
+  return fetch(`https://pokeapi.co/api/v2/pokemon/${num}`).then((result) => {
+  // result is an array of response objects, one for each request
+  // we need to parse the JSON in each result
+  return result.json()
+  })
+})
+
+Promise.all(arrayPromises).then((results) => {
+  // results is now an array of objects
+  // we can do something with it, like
+  results.forEach((e) => {
+    console.log(`${e.name} weighs ${e.weight}`)
+  })
+})
+#+END_SRC
+
+** Mock
+*** Mock function
+A mock function is a fake function that doesn't do anything but keep track of
+how many times it called. It also keeps track of the arguments that it is being
+called with. You can create a mock function by calling jest.fn function.
+
+The mocked function contains an array of all the times the function has been
+called. You can access this array like this:
+#+BEGIN_SRC js
+// a is a mock function.
+const a = jest.fn()
+
+a() // a is run without any arguments.
+console.log( a.mock.calls.length ) // a.mock.calls is an array of length 1
+
+a('hello', 'world') // a is run with 2 arguments.
+console.log( a.mock.calls.length ) // a.mock.calls is an array of length 2
+
+a('test', 1, 9, 100) // a is run with 4 arguments.
+console.log( a.mock.calls.length ) // a.mock.calls is an array of length 3
+
+a( () => {
+  console.log('hello')
+} ) // a is run with 1 argument
+#+END_SRC
+*** Mock Return
+If you want a more complicated mock function that can return something, you can
+pass in a function.
+#+BEGIN_SRC js
+const a = jest.fn( (a, b) => {
+  return a + b
+})
+
+console.log( a(6,7) ) // prints out 13
+#+END_SRC
+Example, We are testing a function that takes in a number and prints out "hello"
+that many times.
+#+BEGIN_SRC js
+// solution.js
+const logHello = (i) => {
+  if (i <= 0) return
+  console.log('hello')
+  return logHello(i-1)
+}
+
+module.exports = logHello
+
+// solution.test.js
+const logHello = require('./solution.js')
+describe('logHello', () => {
+  test('should log 0 times if -10 is passed in', () => {
+    console.log = jest.fn()
+    logHello(-10)
+    expect(console.log.mock.calls.length).toEqual(0)
+  })
+})
+#+END_SRC
+*** Mock modules
+Sometimes, the functions you are testing will depend on external modules that
+you have no control over. To mock an entire module, you run
+jest.mock('module-name')
+
+In the example below, the function first sends a request to an API to get an
+array of objects. It will console.log the title for each title property of the
+object in the array.
+#+BEGIN_SRC js
+// solution.js
+const request = require('request')
+
+const logTitles = () => {
+  request('https://c0d3.com/api/lessons', (err, response, body) => {
+    const arr = JSON.parse(body)
+    arr.forEach( (lesson) => {
+      console.log(lesson.title)
+    })
+  })
+}
+
+module.exports = logTitles
+
+// solution.test.js
+jest.mock('request') // very first thing to do, mock the library
+
+// when this happens, this file will get the fake request library
+const logTitles = require('./solution.js')
+
+// We need to change the mocked library so we can send back fake data
+const request = require('request')
+
+// solution.test.js
+const logHello = require('./solution.js')
+describe('logHello', () => {
+  test('should call request 1 time', () => {
+    request.mockClear() // we should always reset the mock of modules
+    console.log = jest.fn()
+    logTitles()
+    expect(request.mock.calls.length).toEqual(1)
+    expect(console.log.mock.calls.length).toEqual(0)
+  })
+  test('should log 2 times if response has 2 objects', () => {
+    request.mockClear() // we should always reset the mock of modules
+
+    // we need to stringify it because request callback expects a string
+    console.log = jest.fn()
+    const fakeResponse = JSON.stringify([{
+      title: 'hello',
+    }, {
+      title: 'world'
+    }])
+    logTitles()
+
+    // request is called 1 time with 2 arguments.
+    // The second argument is a function. Let's run that function
+    request.mock.calls[0][1](null, null, fakeResponse)
+
+    expect(console.log.mock.calls.length).toEqual(2)
+    expect(console.log.mock.calls[0][0]).toEqual('hello')
+    expect(console.log.mock.calls[1][0]).toEqual('world')
+  })
+})
+#+END_SRC

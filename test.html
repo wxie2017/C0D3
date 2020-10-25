@@ -414,3 +414,253 @@ startApp3()
     }
   </script>
 </div>
+
+<h1>js3 example for localStorage</h1>
+<div>
+  <input type="text" class="textBox" />
+  <button class="submit">Store it</button>
+
+  <script>
+    const submitButton = document.querySelector(".submit")
+    const textBox = document.querySelector(".textBox")
+
+    // First grab what's already in local storage.
+    // We use || '[]' to start an array the first time
+    //   because getItem will return null
+    const lsData = localStorage.getItem('mydata') || '[]'
+
+    // Turn string into an array
+    const dataArray = JSON.parse(lsData)
+
+    submitButton.onclick = () => {
+    // Push the new text into it
+    dataArray.push(textBox.value)
+    // Store it back, turning it into a string on the way
+    localStorage.setItem('mydata', JSON.stringify(dataArray))
+    // Then console.log everything stored up till now
+    console.log(dataArray)
+    }
+  </script>
+</div>
+
+
+<h1>js3 exercise 1</h1>
+<h2>Add Option</h2>
+<div>
+  <input type="text" class="input_js3_1"/>
+  <button class="button_js3_1">Add</button>
+  <select class="select_js3_1"></select>
+
+  <script>
+    const input_js3_1  = document.querySelector('.input_js3_1')
+    const button_js3_1 = document.querySelector('.button_js3_1')
+    const select_js3_1 = document.querySelector('.select_js3_1')
+
+    const optionArray = []
+
+    button_js3_1.onclick = () => {
+    // Push the new text into it
+    optionArray.unshift(input_js3_1.value)
+
+    // Update select display
+    select_js3_1.innerHTML = optionArray.reduce((acc, e) => {
+    return acc + `
+    <option value=${e}>${e}</option>
+    `
+    }, "")
+    }
+  </script>
+</div>
+
+<h1>js3 exercise 2</h1>
+<h2>Todo list</h2>
+<div>
+  <button class="button_js3_2">Add</button>
+  <input class="input_js3_2" type="text" />
+  <button class="button_js3_2_1">Filter</button>
+  <div class="box_js3_2"></div>
+
+  <script>
+    const box_js3_2 = document.querySelector('.box_js3_2')
+    const button_js3_2 = document.querySelector('.button_js3_2')
+    const button_js3_2_1 = document.querySelector('.button_js3_2_1')
+    const input_js3_2 = document.querySelector('.input_js3_2')
+
+    // First grab what's already in local storage.
+    // We use || '[]' to start an array the first time
+    //   because getItem will return null
+    const todoData = localStorage.getItem('myTodo') || '[]'
+    // Turn string into an array
+    const todoArray = JSON.parse(todoData)
+
+    const updateBox = () => {
+    box_js3_2.innerHTML = todoArray.reduce((acc, e) => {
+    return acc + `
+    <h3 class="todo" value=${e}>${e}</h3>
+    `
+    }, "")
+
+    // Store it back, turning it into a string on the way
+    localStorage.setItem('myTodo', JSON.stringify(todoArray))
+
+    const todos = document.querySelectorAll('.todo')
+
+    todos.forEach((e, i) => {
+    e.onclick = () => {
+    todoArray.splice(i, 1)
+    updateBox()
+    }
+    })
+    }
+
+    button_js3_2.onclick = () => {
+    // Push the new text into it
+    const todoItem = "todo" + todoArray.length
+    todoArray.unshift(todoItem)
+
+    // Update box display
+    updateBox()
+    }
+
+    button_js3_2_1.onclick = () => {
+    const todoList = todoArray.filter((e) => {
+    return e.includes(input_js3_2.value)
+    })
+
+    box_js3_2.innerHTML = todoList.reduce((acc, e) => {
+    return acc + `
+    <h3 class="todo" value=${e}>${e}</h3>
+    `
+    }, "")
+    }
+  </script>
+</div>
+
+<h1>js3 exercise 3</h1>
+<h2>book reader</h2>
+<div>
+  <button class="button_js3_3_1">Previous</button>
+  <button class="button_js3_3_2">Next</button>
+
+  <div class="box_js3_3_1"></div>
+
+  <input type="text" class="input_js3_3" />
+  <button class="button_js3_3_3">Submit</button>
+
+  <div class="box_js3_3"></div>
+
+  <script>
+    const button_js3_3_1 = document.querySelector('.button_js3_3_1')
+    const button_js3_3_2 = document.querySelector('.button_js3_3_2')
+    const button_js3_3_3 = document.querySelector('.button_js3_3_3')
+    const input_js3_3 = document.querySelector('.input_js3_3')
+    const box_js3_3_1 = document.querySelector('.box_js3_3_1')
+    const box_js3_3 = document.querySelector('.box_js3_3')
+
+    const bookData = localStorage.getItem('myBook') || '[]'
+    // Turn string into an array
+    const bookArray = JSON.parse(bookData)
+
+    let bookmark = 0
+    button_js3_3_1.onclick = () => {
+    if (bookmark > 0) {
+    bookmark = bookmark - 1
+    }
+    console.log(bookmark)
+    updateRead()
+    }
+
+    button_js3_3_2.onclick = () => {
+    if (bookmark < (bookArray.length-1)) {
+    bookmark = bookmark + 1
+    }
+
+    updateRead()
+    }
+    const updateRead = () => {
+    box_js3_3_1.innerText = bookArray[bookmark]
+    }
+
+    updateRead()
+
+    const updateBook = () => {
+    box_js3_3.innerHTML = bookArray.reduce((acc, e) => {
+    return acc + `
+    <h4 class="book" value=${e}>${e}</h4>
+    `
+    }, "")
+
+    // Store it back, turning it into a string on the way
+    localStorage.setItem('myBook', JSON.stringify(bookArray))
+
+    const books = document.querySelectorAll('.book')
+
+    books.forEach((e, i) => {
+    e.onclick = () => {
+    bookArray.splice(i, 1)
+    updateBook()
+    }
+    })
+    }
+
+    button_js3_3_3.onclick = () => {
+    // Push the new book into books
+    const newBook = input_js3_3.value
+    bookArray.unshift(newBook)
+
+    // Update book display
+    updateBook()
+    }
+
+    updateBook()
+  </script>
+</div>
+
+<h1>js3 exercise 4</h1>
+<h2>friend's age</h2>
+<div>
+  <h3>Name: </h3>
+  <input type="text" class="Name" />
+  <h3>Age: </h3>
+  <input type="text" class="Age" />
+  <button class="button_js3_4">ADD</button>
+
+  <div class="box_js3_4"></div>
+
+  <script>
+    const friendData = localStorage.getItem('myFriend') || '[]'
+    const friendArray = JSON.parse(friendData)
+
+    document.querySelector('.button_js3_4').onclick = () => {
+    const newFriend = {
+    name: document.querySelector('.Name').value,
+    age:  document.querySelector('.Age').value
+    }
+
+    friendArray.push(newFriend)
+
+    localStorage.setItem('myFriend', JSON.stringify(friendArray))
+
+    updateDisplay = () => {
+    document.querySelector('.box_js3_4').innerHTML =
+    friendArray.reduce((acc, e) => {
+    return acc + `
+    <div>
+    <h4 class="friendName">${e.name}</h4>
+    </div>
+    `
+    }, "")
+
+    document.querySelectorAll('.friendName').forEach((e, i) => {
+    e.onclick = () => {
+    alert(friendArray[i].age)
+    const myLog = `${i} - ${e} - ${friendArray[i].age}`
+    console.log(myLog)
+    }
+    })
+    }
+
+    updateDisplay()
+    }
+  </script>
+</div>
